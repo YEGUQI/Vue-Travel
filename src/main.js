@@ -3,6 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 样式重置
+import './assets/style/reset.css'
+// 解决移动端 1像素边框问题
+import './assets/style/border.css'
+// 解决移动端点击 3毫秒 延迟的问题
+import fastclick from 'fastclick'
+fastclick.attach(document.body)
 
 Vue.config.productionTip = false
 
