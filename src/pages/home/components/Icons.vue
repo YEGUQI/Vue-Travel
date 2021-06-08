@@ -61,7 +61,7 @@ export default {
       },
       {
         id: '0007',
-        imgUrl: 'https://picbed.qunarzz.com/f5e5770393d759578962e53ee67798c8.png',
+        imgUrl: 'https://picbed.qunarzz.com/a36d2288f19e54562338f4d8ef986288.png',
         desc: '低价机票'
       },
       {
@@ -83,6 +83,7 @@ export default {
     }
   },
   computed: {
+    // 判断分页显示
     pages () {
       const pages = []
       // 循环遍历图片数组中的值
@@ -105,6 +106,8 @@ export default {
 .icons >>> .swiper-container
   height: 0;
   padding-bottom: 50%;
+.icons
+  margin-top: 0.2rem;
 .icon
   position: relative;
   overflow: hidden;
