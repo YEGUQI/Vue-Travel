@@ -46,7 +46,6 @@ export default {
         this.weekendList = data.weekendList
         this.iconList = data.iconList
       }
-      console.log(res)
     }
   },
   mounted () {
