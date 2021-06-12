@@ -87,6 +87,109 @@
     "lodash" "^4.2.0"
     "to-fast-properties" "^2.0.0"
 
+"@better-scroll/core@^2.3.1":
+  "integrity" "sha1-TCmjt+pGLGWdugooigYN2xpN3hQ="
+  "resolved" "https://registry.nlark.com/@better-scroll/core/download/@better-scroll/core-2.3.1.tgz?cache=0&sync_timestamp=1620475789812&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fcore%2Fdownload%2F%40better-scroll%2Fcore-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/shared-utils" "^2.3.1"
+
+"@better-scroll/indicators@^2.3.1":
+  "integrity" "sha1-6e8IfzjRbO0+hz+AtB2asH1CJNM="
+  "resolved" "https://registry.nlark.com/@better-scroll/indicators/download/@better-scroll/indicators-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/infinity@^2.3.1":
+  "integrity" "sha1-hi1a/rUSJNv/TX7Ud879lP7P8WQ="
+  "resolved" "https://registry.nlark.com/@better-scroll/infinity/download/@better-scroll/infinity-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/mouse-wheel@^2.3.1":
+  "integrity" "sha1-SG9yysdNi99GUk1KrGi7bycwFt0="
+  "resolved" "https://registry.nlark.com/@better-scroll/mouse-wheel/download/@better-scroll/mouse-wheel-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/movable@^2.3.1":
+  "integrity" "sha1-gr+8z1+thEQ7RlYWstFKQLE5laE="
+  "resolved" "https://registry.nlark.com/@better-scroll/movable/download/@better-scroll/movable-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/nested-scroll@^2.3.1":
+  "integrity" "sha1-2MoTzsfjZEmhU2wmtS/mM9xoyRQ="
+  "resolved" "https://registry.nlark.com/@better-scroll/nested-scroll/download/@better-scroll/nested-scroll-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/observe-dom@^2.3.1":
+  "integrity" "sha1-v7CUVjBbikfa5ggE12R/nbNq4QQ="
+  "resolved" "https://registry.nlark.com/@better-scroll/observe-dom/download/@better-scroll/observe-dom-2.3.1.tgz?cache=0&sync_timestamp=1620475720219&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fobserve-dom%2Fdownload%2F%40better-scroll%2Fobserve-dom-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/observe-image@^2.3.1":
+  "integrity" "sha1-hbx1Tc2IzcujWIlzdnFfrDFQMpo="
+  "resolved" "https://registry.nlark.com/@better-scroll/observe-image/download/@better-scroll/observe-image-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/pull-down@^2.3.1":
+  "integrity" "sha1-J1rHj4PpIH28WjdBczdbffdj0Jw="
+  "resolved" "https://registry.nlark.com/@better-scroll/pull-down/download/@better-scroll/pull-down-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/pull-up@^2.3.1":
+  "integrity" "sha1-mxZ9jihFXBEuYJi2zpZWpnwHsJA="
+  "resolved" "https://registry.nlark.com/@better-scroll/pull-up/download/@better-scroll/pull-up-2.3.1.tgz?cache=0&sync_timestamp=1620475720937&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fpull-up%2Fdownload%2F%40better-scroll%2Fpull-up-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/scroll-bar@^2.3.1":
+  "integrity" "sha1-9m78NC93Gt5SAWpyGiphVIM7Uc8="
+  "resolved" "https://registry.nlark.com/@better-scroll/scroll-bar/download/@better-scroll/scroll-bar-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/shared-utils@^2.3.1":
+  "integrity" "sha1-6GOm7TKqedN4cNr+JrBSgnAXqI8="
+  "resolved" "https://registry.nlark.com/@better-scroll/shared-utils/download/@better-scroll/shared-utils-2.3.1.tgz?cache=0&sync_timestamp=1620475697806&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fshared-utils%2Fdownload%2F%40better-scroll%2Fshared-utils-2.3.1.tgz"
+  "version" "2.3.1"
+
+"@better-scroll/slide@^2.3.1":
+  "integrity" "sha1-kXcCj/bc2Ga6T91MqH1c9Uv1doQ="
+  "resolved" "https://registry.nlark.com/@better-scroll/slide/download/@better-scroll/slide-2.3.1.tgz?cache=0&sync_timestamp=1620475721345&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40better-scroll%2Fslide%2Fdownload%2F%40better-scroll%2Fslide-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/wheel@^2.3.1":
+  "integrity" "sha1-9kd2ck8yh6fEINI4oXWns8jIVoU="
+  "resolved" "https://registry.nlark.com/@better-scroll/wheel/download/@better-scroll/wheel-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
+"@better-scroll/zoom@^2.3.1":
+  "integrity" "sha1-Ct3vSl2s09O48j+mqTe97AUziw4="
+  "resolved" "https://registry.nlark.com/@better-scroll/zoom/download/@better-scroll/zoom-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+
 "@types/json5@^0.0.29":
   "integrity" "sha1-7ihweulOEdK4J7y+UnC86n8+ce4="
   "resolved" "https://registry.npm.taobao.org/@types/json5/download/@types/json5-0.0.29.tgz"
@@ -1077,6 +1180,26 @@
   "integrity" "sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY="
   "resolved" "https://registry.npm.taobao.org/batch/download/batch-0.6.1.tgz"
   "version" "0.6.1"
+
+"better-scroll@^2.3.1":
+  "integrity" "sha1-VqzyVK3AlSjF9tbgviFpMmdJROk="
+  "resolved" "https://registry.nlark.com/better-scroll/download/better-scroll-2.3.1.tgz"
+  "version" "2.3.1"
+  dependencies:
+    "@better-scroll/core" "^2.3.1"
+    "@better-scroll/indicators" "^2.3.1"
+    "@better-scroll/infinity" "^2.3.1"
+    "@better-scroll/mouse-wheel" "^2.3.1"
+    "@better-scroll/movable" "^2.3.1"
+    "@better-scroll/nested-scroll" "^2.3.1"
+    "@better-scroll/observe-dom" "^2.3.1"
+    "@better-scroll/observe-image" "^2.3.1"
+    "@better-scroll/pull-down" "^2.3.1"
+    "@better-scroll/pull-up" "^2.3.1"
+    "@better-scroll/scroll-bar" "^2.3.1"
+    "@better-scroll/slide" "^2.3.1"
+    "@better-scroll/wheel" "^2.3.1"
+    "@better-scroll/zoom" "^2.3.1"
 
 "bfj-node4@^5.2.0":
   "integrity" "sha1-4j2LJwV/HQIU/FYRQq2duZjyaDA="
