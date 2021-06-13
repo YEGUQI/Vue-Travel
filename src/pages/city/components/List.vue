@@ -8,7 +8,7 @@
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">{{this.currentCity}}</div>
           </div>
         </div>
       </div>
@@ -19,6 +19,7 @@
             class="button-wrapper"
             v-for="item in hotCities"
             :key="item.id"
+            @click="handelClickCity(item.name)"
           >
             <div class="button">{{item.name}}</div>
           </div>
@@ -36,7 +37,10 @@
           v-for="innerItem of item"
           :key="innerItem.id"
         >
-          <div class="item border-bottom">{{innerItem.name}}</div>
+          <div
+            class="item border-bottom"
+            @click="handelClickCity(innerItem.name)"
+          >{{innerItem.name}}</div>
         </div>
       </div>
     </div>
@@ -45,6 +49,7 @@
 
 <script>
 import Scroll from 'better-scroll'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'CityList',
   props: {
@@ -71,6 +76,14 @@ export default {
   updated () {
     this.scroll.refresh()
   },
+  methods: {
+    handelClickCity (city) {
+      // this.$store.commit('change', city)
+      this.change(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['change'])
+  },
   watch: {
     letter () {
       if (this.letter) {
@@ -78,6 +91,11 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  computed: {
+    ...mapState({
+      currentCity: 'city'
+    })
   }
 }
 </script>

@@ -18,6 +18,7 @@
           class="item border-bottom"
           v-for="item of list"
           :key="item.id"
+          @click="handelClickCity(item.name)"
         >{{item.name}}</li>
         <li
           class="item border-bottom"
@@ -29,6 +30,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Scroll from 'better-scroll'
 export default {
   name: 'CitySearch',
@@ -52,6 +54,14 @@ export default {
   },
   updated () {
     this.scroll.refresh()
+  },
+  methods: {
+    handelClickCity (city) {
+      // this.$store.commit('change', city)
+      this.change(city)
+      this.$router.push('/')
+    },
+    ...mapMutations(['change'])
   },
   computed: {
     isShow () {
