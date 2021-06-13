@@ -15,10 +15,6 @@ import 'style/border.css'
 // 引入swiper 的样式
 import 'swiper/dist/css/swiper.css'
 
-// 解决移动端点击 3毫秒 延迟的问题
-import fastclick from 'fastclick'
-fastclick.attach(document.body)
-
 Vue.use(VueAwesomeSwiper)
 
 Vue.config.productionTip = false

@@ -71,9 +71,14 @@ export default {
     }
   },
   mounted () {
-    this.scroll = new Scroll(this.$refs.wrapper)
+    this.scroll = new Scroll(this.$refs.wrapper, {
+      click: true
+    })
   },
   updated () {
+    this.scroll.refresh()
+  },
+  activated () {
     this.scroll.refresh()
   },
   methods: {

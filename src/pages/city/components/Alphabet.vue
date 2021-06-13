@@ -63,7 +63,7 @@ export default {
           if (index >= 0 && index <= this.letters.length) {
             this.$emit('changeLetter', this.letters[index])
           }
-        }, 16)
+        }, 8)
       }
     },
     handeltouchend () {
