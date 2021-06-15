@@ -51,6 +51,9 @@ export default {
   },
   activated () {
     window.addEventListener('scroll', this.handelScroll)
+  },
+  deactivated () {
+    window.removeEventListener('scroll', this.handelScroll)
   }
 }
 </script>
