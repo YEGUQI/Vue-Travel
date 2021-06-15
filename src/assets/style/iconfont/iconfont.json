@@ -6,6 +6,13 @@
   "description": "Travel项目图标库",
   "glyphs": [
     {
+      "icon_id": "7721915",
+      "name": "图片",
+      "font_class": "tupian",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
       "icon_id": "2674472",
       "name": "返回",
       "font_class": "fanhui",
