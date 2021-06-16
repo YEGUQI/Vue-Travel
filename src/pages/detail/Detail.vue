@@ -1,7 +1,11 @@
 <template>
   <div>
     <detail-header></detail-header>
-    <detail-banner></detail-banner>
+    <detail-banner
+      :bannerImg='bannerImg'
+      :sightName='sightName'
+      :bannerImgs='gallaryImgs'
+    ></detail-banner>
 
     <div class="tes">
       <detail-list :list='list'></detail-list>
@@ -10,6 +14,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import DetailBanner from './components/Banner.vue'
 import DetailHeader from './components/Header.vue'
 import DetailList from './components/List.vue'
@@ -22,36 +27,35 @@ export default {
   },
   data () {
     return {
-      list: [ {
-        title: '成人票',
-        children: [
-          {title: '成人三馆联票'},
-          {title: '成人五馆联票'}
-        ]
-      },
-      {
-        title: '儿童票',
-        children: [
-          {title: '成人三馆联票'},
-          {title: '成人五馆联票'}
-        ]
-      },
-      {
-        title: '学生票',
-        children: [
-          {title: '成人三馆联票'},
-          {title: '成人五馆联票'}
-        ]
-      },
-      {
-        title: '特惠票',
-        children: [
-          {title: '成人三馆联票'},
-          {title: '成人五馆联票'}
-        ]
-      }
-      ]
+      bannerImg: '',
+      sightName: '',
+      list: [],
+      gallaryImgs: []
     }
+  },
+  methods: {
+    getDetailInfo () {
+      axios.get('/api/detail.json', {
+        params: {
+          id: this.$route.params.id
+        }
+      }).then(
+        this.getDetailSucc
+      )
+    },
+    getDetailSucc (res) {
+      res = res.data
+      if (res.data && res.ret) {
+        const data = res.data
+        this.bannerImg = data.bannerImg
+        this.sightName = data.sightName
+        this.gallaryImgs = data.gallaryImgs
+        this.list = data.categoryList
+      }
+    }
+  },
+  mounted () {
+    this.getDetailInfo()
   }
 }
 </script>

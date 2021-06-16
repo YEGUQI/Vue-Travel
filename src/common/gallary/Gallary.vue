@@ -5,15 +5,12 @@
   >
     <div class="wrapper">
       <swiper :options="swiperOption">
-        <swiper-slide>
+        <swiper-slide
+          v-for="(item,index) in imgs"
+          :key='index'
+        >
           <img
-            src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_800x800_70debc93.jpg"
-            class="gallary-img"
-          >
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_800x800_70debc93.jpg"
+            :src="item"
             class="gallary-img"
           >
         </swiper-slide>

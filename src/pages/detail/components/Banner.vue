@@ -5,15 +5,15 @@
       @click="handelGallaryShow"
     >
       <img
-        src="http://img1.qunarzz.com/sight/p0/201404/23/04b92c99462687fa1ba45c1b5ba4ad77.jpg_600x330_bf9c4904.jpg"
+        :src="bannerImg"
         alt=""
         class="banner-img"
       >
       <div class="banner-info">
-        <div class="banner-title">大连圣亚海洋世界(AAAA景区)</div>
+        <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe6df;</span>
-          39
+          {{this.bannerImgs.length}}
         </div>
       </div>
     </div>
@@ -21,6 +21,7 @@
     <common-gallary
       @close='handelGallaryClose'
       v-if="gallaryShow"
+      :imgs='bannerImgs'
     ></common-gallary>
   </div>
 </template>
@@ -29,12 +30,18 @@
 import CommonGallary from 'common/gallary/Gallary'
 export default {
   name: 'DetailBanner',
+  props: {
+    bannerImg: String,
+    sightName: String,
+    bannerImgs: Array
+  },
   components: {
     CommonGallary
   },
   data () {
     return {
-      gallaryShow: false
+      gallaryShow: false,
+      gallaryImgs: this.bannerImgs
     }
   },
   methods: {
