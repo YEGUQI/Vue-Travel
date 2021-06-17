@@ -30,69 +30,74 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-import Scroll from 'better-scroll'
+import { mapMutations } from "vuex";
+import Scroll from "better-scroll";
 export default {
-  name: 'CitySearch',
+  name: "CitySearch",
   props: {
     cities: {
       type: Object,
       default: () => {
-        return {}
+        return {};
       }
     }
   },
-  data () {
+  data() {
     return {
-      keyValue: '',
+      keyValue: "",
       timer: false,
       list: []
-    }
+    };
   },
-  mounted () {
-    this.scroll = new Scroll(this.$refs.serach)
+  mounted() {
+    this.scroll = new Scroll(this.$refs.serach, {
+      click: true
+    });
   },
-  updated () {
-    this.scroll.refresh()
+  updated() {
+    this.scroll.refresh();
   },
   methods: {
-    handelClickCity (city) {
+    handelClickCity(city) {
       // this.$store.commit('change', city)
-      this.change(city)
-      this.$router.push('/')
+      this.change(city);
+      this.$router.push("/");
     },
-    ...mapMutations(['change'])
+    ...mapMutations(["change"])
   },
   computed: {
-    isShow () {
-      return !this.list.length
+    isShow() {
+      return !this.list.length;
     }
   },
   watch: {
-    keyValue () {
+    keyValue() {
       if (this.timer) {
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
       }
       // 搜索框内容为空时 清空列表
       if (!this.keyValue) {
-        this.list = []
-        return
+        this.list = [];
+        return;
       }
       // 节流/防抖
       this.timer = setTimeout(() => {
-        const result = []
+        const result = [];
         for (const i in this.cities) {
           this.cities[i].forEach(item => {
-            if (item.name.indexOf(this.keyValue) > -1 || item.spell.indexOf(this.keyValue) > -1) {
-              result.push(item)
+            if (
+              item.name.indexOf(this.keyValue) > -1 ||
+              item.spell.indexOf(this.keyValue) > -1
+            ) {
+              result.push(item);
             }
-          })
+          });
         }
-        this.list = result
-      }, 100)
+        this.list = result;
+      }, 100);
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import CommonGallary from 'common/gallary/Gallary'
-import FadeAnimation from 'common/fade/FadeAnimation'
+import CommonGallary from "common/gallary/Gallary";
+import FadeAnimation from "common/fade/FadeAnimation";
 export default {
-  name: 'DetailBanner',
+  name: "DetailBanner",
   props: {
     bannerImg: String,
     sightName: String,
@@ -42,21 +42,21 @@ export default {
     CommonGallary,
     FadeAnimation
   },
-  data () {
+  data() {
     return {
       gallaryShow: false,
       gallaryImgs: this.bannerImgs
-    }
+    };
   },
   methods: {
-    handelGallaryClose () {
-      this.gallaryShow = false
+    handelGallaryClose() {
+      this.gallaryShow = false;
     },
-    handelGallaryShow () {
-      this.gallaryShow = true
+    handelGallaryShow() {
+      this.gallaryShow = true;
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -74,7 +74,7 @@ export default {
     right: 0;
     left: 0;
     line-height: 0.6rem;
-    background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
     color: #fff;
     .banner-title
       flex: 1;
