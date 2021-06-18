@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import { createApp } from 'vue';
 import App from './App'
 import router from './router'
 import store from './store/index'
@@ -13,15 +13,7 @@ import 'style/iconfont.css'
 // 解决移动端 1像素边框问题
 import 'style/border.css'
 // 引入swiper 的样式
-import 'swiper/dist/css/swiper.css'
-
-Vue.use(VueAwesomeSwiper)
-
-Vue.config.productionTip = false
+import 'vue-awesome-swiper/node_modules/swiper/dist/css/swiper.css'
 
 /* eslint-disable no-new */
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app')
+createApp(App).use(router).use(store).use(VueAwesomeSwiper).mount('#app')

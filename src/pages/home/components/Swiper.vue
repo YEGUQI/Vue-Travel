@@ -23,32 +23,28 @@
 </template>
 
 <script>
+import { computed } from "vue";
 export default {
-  name: 'HomeSwiper',
+  name: "HomeSwiper",
   props: {
     list: {
       type: Array,
       default: () => {
-        return []
+        return [];
       }
     }
   },
-  data () {
-    return {
-      swiperOption: {
-        pagination: {
-          el: '.swiper-pagination'
-        },
-        loop: true
-      }
-    }
-  },
-  computed: {
-    showSwiper () {
-      return this.list.length
-    }
+  setup(props) {
+    const swiperOption = {
+      pagination: ".swiper-pagination",
+      loop: true
+    };
+    const showSwiper = computed(() => {
+      return props.list.length;
+    });
+    return { swiperOption, showSwiper };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

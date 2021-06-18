@@ -5,20 +5,20 @@
         type="text"
         class="search-input"
         placeholder="请输入城市名或拼音"
-        v-model="keyValue"
+        v-model="keyword "
       >
     </div>
     <div
       class="serach-content"
-      ref="serach"
-      v-show="keyValue"
+      ref="search"
+      v-show="keyword "
     >
       <ul>
         <li
           class="item border-bottom"
           v-for="item of list"
           :key="item.id"
-          @click="handelClickCity(item.name)"
+          @click="handleCityClick(item.name)"
         >{{item.name}}</li>
         <li
           class="item border-bottom"
@@ -30,8 +30,10 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import Scroll from "better-scroll";
+import { computed, watch, onMounted, ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+import Bscroll from "better-scroll";
 export default {
   name: "CitySearch",
   props: {
@@ -42,60 +44,53 @@ export default {
       }
     }
   },
-  data() {
-    return {
-      keyValue: "",
-      timer: false,
-      list: []
-    };
-  },
-  mounted() {
-    this.scroll = new Scroll(this.$refs.serach, {
-      click: true
+  setup(props) {
+    const keyword = ref("");
+    const list = ref([]);
+    const search = ref(null);
+    let timer = null;
+    const store = useStore();
+    const router = useRouter();
+    const isShow = computed(() => {
+      return !list.length;
     });
-  },
-  updated() {
-    this.scroll.refresh();
-  },
-  methods: {
-    handelClickCity(city) {
-      // this.$store.commit('change', city)
-      this.change(city);
-      this.$router.push("/");
-    },
-    ...mapMutations(["change"])
-  },
-  computed: {
-    isShow() {
-      return !this.list.length;
-    }
-  },
-  watch: {
-    keyValue() {
-      if (this.timer) {
-        clearTimeout(this.timer);
+
+    watch(keyword, (keyword, prevKeyword) => {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
       }
-      // 搜索框内容为空时 清空列表
-      if (!this.keyValue) {
-        this.list = [];
+      if (!keyword) {
+        list.value = [];
         return;
       }
-      // 节流/防抖
-      this.timer = setTimeout(() => {
+      timer = setTimeout(() => {
         const result = [];
-        for (const i in this.cities) {
-          this.cities[i].forEach(item => {
+        console.log(props.cities);
+        for (const i in props.cities) {
+          props.cities[i].forEach(value => {
             if (
-              item.name.indexOf(this.keyValue) > -1 ||
-              item.spell.indexOf(this.keyValue) > -1
+              value.spell.indexOf(keyword) > -1 ||
+              value.name.indexOf(keyword) > -1
             ) {
-              result.push(item);
+              result.push(value);
             }
           });
         }
-        this.list = result;
+        list.value = result;
       }, 100);
+    });
+
+    function handleCityClick(city) {
+      store.commit("change", city);
+      router.push("/");
     }
+
+    onMounted(() => {
+      new Bscroll(search.value, { click: true });
+    });
+
+    return { keyword, list, search, isShow, handleCityClick };
   }
 };
 </script>

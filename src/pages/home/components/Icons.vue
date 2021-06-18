@@ -1,6 +1,6 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <swiper-slide
         v-for="(page,index) in pages"
         :key="index"
@@ -25,32 +25,52 @@
 </template>
 
 <script>
+import { computed } from "vue";
 export default {
-  name: 'HomeIcons',
+  name: "HomeIcons",
   props: {
     list: {
       type: Array,
       default: () => {
-        return []
+        return [];
       }
     }
   },
+  setup(props) {
+    const swiperOption = {
+      autoplay: false
+    };
+    const pages = computed(() => {
+      const pages = [];
+      // 循环遍历图片数组中的值
+      props.list.forEach((item, index) => {
+        const page = Math.floor(index / 8);
+        if (!pages[page]) {
+          pages[page] = [];
+        }
+        pages[page].push(item);
+      });
+      return pages;
+    });
+    return { swiperOption, pages };
+  },
+
   computed: {
     // 判断分页显示
-    pages () {
-      const pages = []
+    pages() {
+      const pages = [];
       // 循环遍历图片数组中的值
       this.list.forEach((item, index) => {
-        const page = Math.floor(index / 8)
+        const page = Math.floor(index / 8);
         if (!pages[page]) {
-          pages[page] = []
+          pages[page] = [];
         }
-        pages[page].push(item)
-      })
-      return pages
+        pages[page].push(item);
+      });
+      return pages;
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

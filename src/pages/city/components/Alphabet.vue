@@ -2,75 +2,80 @@
   <ul class="list">
     <li
       class="item"
-      v-for="item in letters"
+      v-for="item of letters"
       :key="item"
-      :ref="item"
-      @click="handelChangeLetter"
-      @touchstart="handeltouchstart"
-      @touchmove="handeltouchmove"
-      @touchend="handeltouchend"
+      :ref="elem => elems[item] = elem"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
+      @click="handleLetterClick"
     >{{item}}</li>
 
   </ul>
 </template>
 
 <script>
+import { computed, onUpdated, ref } from "vue";
 export default {
-  name: 'CityHeader',
+  name: "CityAlphabet",
   props: {
-    cities: {
-      type: Object,
-      default: () => {
-        return {}
+    cities: Object
+  },
+  setup(props, context) {
+    let touchStatus = false;
+    let startY = 0;
+    let timer = null;
+    const elems = ref([]);
+
+    const letters = computed(() => {
+      const letters = [];
+      for (let i in props.cities) {
+        letters.push(i);
       }
+      return letters;
+    });
+
+    onUpdated(() => {
+      startY = elems.value["A"].offsetTop;
+    });
+
+    function handleLetterClick(e) {
+      context.emit("change", e.target.innerText);
     }
-  },
-  data () {
-    return {
-      touchStatus: false,
-      // 获取 A 字母距离顶端的距离
-      statrY: 0,
-      timer: false
+
+    function handleTouchStart() {
+      touchStatus = true;
     }
-  },
-  computed: {
-    letters () {
-      let letters = []
-      for (let item in this.cities) {
-        letters.push(item)
-      }
-      return letters
+
+    function handleTouchEnd() {
+      touchStatus = false;
     }
-  },
-  methods: {
-    handelChangeLetter (e) {
-      this.$emit('changeLetter', e.target.innerText)
-    },
-    handeltouchstart () {
-      this.touchStatus = true
-    },
-    handeltouchmove (e) {
-      if (this.touchStatus) {
-        if (this.timer) {
-          clearTimeout(this.timer)
+
+    function handleTouchMove(e) {
+      if (touchStatus) {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
         }
-        this.timer = setTimeout(() => {
-          this.statrY = this.$refs['A'][0].offsetTop
-          // 手指距离顶部的距离 -79顶部 header 的高度
-          let touchY = e.touches[0].clientY - 79
-          // 当前处于第几个字母 手指距离顶部的距离  - 首字母距离顶部的高度 / 字母本身的高度
-          let index = Math.floor((touchY - this.statrY) / 20)
-          if (index >= 0 && index <= this.letters.length) {
-            this.$emit('changeLetter', this.letters[index])
+        timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY - 79;
+          const index = Math.floor((touchY - startY) / 20);
+          if (index >= 0 && index < letters.value.length) {
+            context.emit("change", letters.value[index]);
           }
-        }, 8)
+        }, 8);
       }
-    },
-    handeltouchend () {
-      this.touchStatus = false
     }
+    return {
+      elems,
+      letters,
+      handleLetterClick,
+      handleTouchStart,
+      handleTouchEnd,
+      handleTouchMove
+    };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

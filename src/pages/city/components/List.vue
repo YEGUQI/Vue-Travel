@@ -2,13 +2,14 @@
   <div
     class="list"
     ref="wrapper"
+    v-if="cities"
   >
     <div>
       <div class="area">
         <div class="title border-topbottom">当前城市</div>
         <div class="button-list">
           <div class="button-wrapper">
-            <div class="button">{{this.currentCity}}</div>
+            <div class="button">{{currentCity}}</div>
           </div>
         </div>
       </div>
@@ -29,7 +30,7 @@
         class="area"
         v-for="(item,key) of cities"
         :key="key"
-        :ref="key"
+        :ref="elem => elems[key] = elem"
       >
         <div class="title border-topbottom">{{key}}</div>
         <div
@@ -48,61 +49,57 @@
 </template>
 
 <script>
-import Scroll from 'better-scroll'
-import { mapState, mapMutations } from 'vuex'
+import Bscroll from "better-scroll";
+import { useStore } from "vuex";
+import { onMounted, ref, watch } from "vue";
+import { useRouter } from "vue-router";
 export default {
-  name: 'CityList',
+  name: "CityList",
   props: {
-    cities: {
-      type: Object,
-      default: () => {
-        return {}
-      }
-    },
+    cities: Object,
     hotCities: {
       type: Array,
       default: () => {
-        return []
+        return [];
       }
     },
     letter: {
       type: String,
-      default: ''
+      default: ""
     }
   },
-  mounted () {
-    this.scroll = new Scroll(this.$refs.wrapper, {
-      click: true
-    })
-  },
-  updated () {
-    this.scroll.refresh()
-  },
-  activated () {
-    this.scroll.refresh()
-  },
-  methods: {
-    handelClickCity (city) {
-      // this.$store.commit('change', city)
-      this.change(city)
-      this.$router.push('/')
-    },
-    ...mapMutations(['change'])
-  },
-  watch: {
-    letter () {
-      if (this.letter) {
-        const element = this.$refs[this.letter][0]
-        this.scroll.scrollToElement(element)
+  setup(props) {
+    const store = useStore();
+    const router = useRouter();
+    const currentCity = store.state.city;
+    const elems = ref([""]);
+    const wrapper = ref(null);
+    let scroll = null;
+
+    function handelClickCity(city) {
+      store.commit("change", city);
+      router.push("/");
+    }
+
+    watch(
+      () => props.letter,
+      (letter, prevLetter) => {
+        if (letter && scroll) {
+          const element = elems.value[letter];
+          scroll.scrollToElement(element);
+        }
       }
-    }
-  },
-  computed: {
-    ...mapState({
-      currentCity: 'city'
-    })
+    );
+
+    onMounted(() => {
+      scroll = new Bscroll(wrapper.value, {
+        click: true
+      });
+    });
+
+    return { elems, wrapper, currentCity, handelClickCity };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

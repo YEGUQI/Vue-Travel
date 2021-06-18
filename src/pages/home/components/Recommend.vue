@@ -7,7 +7,7 @@
         class="item border-bottom"
         v-for="item in list"
         :key='item.id'
-        :to="'detail/' + item.id"
+        :to="'/detail/' + item.id"
       >
         <img
           :src="item.imgUrl"
@@ -25,16 +25,16 @@
 </template>
 <script>
 export default {
-  name: 'HomeRecommend',
+  name: "HomeRecommend",
   props: {
     list: {
       type: Array,
       default: () => {
-        return []
+        return [];
       }
     }
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

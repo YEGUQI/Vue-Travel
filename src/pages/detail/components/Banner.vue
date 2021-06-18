@@ -13,7 +13,7 @@
         <div class="banner-title">{{sightName}}</div>
         <div class="banner-number">
           <span class="iconfont banner-icon">&#xe6df;</span>
-          {{this.bannerImgs.length}}
+          {{bannerImgs.length}}
         </div>
       </div>
     </div>
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { ref } from "vue";
 import CommonGallary from "common/gallary/Gallary";
 import FadeAnimation from "common/fade/FadeAnimation";
 export default {
@@ -42,19 +43,16 @@ export default {
     CommonGallary,
     FadeAnimation
   },
-  data() {
-    return {
-      gallaryShow: false,
-      gallaryImgs: this.bannerImgs
-    };
-  },
-  methods: {
-    handelGallaryClose() {
-      this.gallaryShow = false;
-    },
-    handelGallaryShow() {
-      this.gallaryShow = true;
+  setup() {
+    let gallaryShow = ref(false);
+
+    function handelGallaryClose() {
+      gallaryShow.value = false;
     }
+    function handelGallaryShow() {
+      gallaryShow.value = true;
+    }
+    return { gallaryShow, handelGallaryClose, handelGallaryShow };
   }
 };
 </script>

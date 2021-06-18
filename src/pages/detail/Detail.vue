@@ -14,50 +14,45 @@
 </template>
 
 <script>
-import axios from 'axios'
-import DetailBanner from './components/Banner.vue'
-import DetailHeader from './components/Header.vue'
-import DetailList from './components/List.vue'
+import { useRoute } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
+import DetailBanner from "./components/Banner.vue";
+import DetailHeader from "./components/Header.vue";
+import DetailList from "./components/List.vue";
+import { onMounted } from "@vue/runtime-core";
 export default {
-  name: 'Detail',
+  name: "Detail",
   components: {
     DetailBanner,
     DetailHeader,
     DetailList
   },
-  data () {
-    return {
-      bannerImg: '',
-      sightName: '',
-      list: [],
-      gallaryImgs: []
-    }
-  },
-  methods: {
-    getDetailInfo () {
-      axios.get('/api/detail.json', {
-        params: {
-          id: this.$route.params.id
-        }
-      }).then(
-        this.getDetailSucc
-      )
-    },
-    getDetailSucc (res) {
-      res = res.data
+  setup() {
+    const bannerImg = ref("");
+    const sightName = ref("");
+    const list = ref([]);
+    const gallaryImgs = ref([]);
+    const route = useRoute();
+    async function getDetailInfo() {
+      let res = await axios.get("/api/detail.json", {
+        params: { id: route.params.id }
+      });
+      res = res.data;
       if (res.data && res.ret) {
-        const data = res.data
-        this.bannerImg = data.bannerImg
-        this.sightName = data.sightName
-        this.gallaryImgs = data.gallaryImgs
-        this.list = data.categoryList
+        const data = res.data;
+        bannerImg.value = data.bannerImg;
+        sightName.value = data.sightName;
+        gallaryImgs.value = data.gallaryImgs;
+        list.value = data.categoryList;
       }
     }
-  },
-  mounted () {
-    this.getDetailInfo()
+    onMounted(() => {
+      getDetailInfo();
+    });
+    return { bannerImg, sightName, gallaryImgs, list };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>

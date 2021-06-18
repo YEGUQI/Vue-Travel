@@ -24,38 +24,39 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 export default {
-  name: 'DetailHeader',
-  data () {
-    return {
-      showabs: true,
-      opctStytle: {
-        opacity: 0
-      }
-    }
-  },
-  methods: {
-    handelScroll () {
+  name: "DetailHeader",
+  setup() {
+    const showabs = ref(true);
+    let opctStytle = reactive({
+      opacity: 0
+    });
+    function handelScroll() {
       // 页面被卷去的头部
-      const top = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset
+      const top =
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        window.pageYOffset;
       if (top > 60) {
         // eslint-disable-next-line no-unused-vars
-        let opacity = top / 140
-        opacity = opacity > 1 ? 1 : opacity
-        this.opctStytle = { opacity }
-        this.showabs = false
+        let opacity = top / 140;
+        opacity = opacity > 1 ? 1 : opacity;
+        opctStytle.opacity = opacity;
+        showabs.value = false;
       } else {
-        this.showabs = true
+        showabs.value = true;
       }
     }
-  },
-  mounted () {
-    window.addEventListener('scroll', this.handelScroll)
-  },
-  destroyed () {
-    window.removeEventListener('scroll', this.handelScroll)
+    onMounted(() => {
+      window.addEventListener("scroll", handelScroll);
+    });
+    onUnmounted(() => {
+      window.removeEventListener("scroll", handelScroll);
+    });
+    return { opctStytle, showabs, handelScroll };
   }
-}
+};
 </script>
 
 <style lang="stylus" scoped>
